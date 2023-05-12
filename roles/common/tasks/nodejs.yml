@@ -21,4 +21,4 @@
 
 - name: Include App pre-reqs
   ansible.builtin.import_tasks:
-    file: shcema_setup.yml
+    file: schema_setup.yml
