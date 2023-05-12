@@ -1,9 +1,4 @@
 
-func_print_head " Load Schema "
-mongo --host mongodb-dev.cskvsmi.online </app/schema/${component}.js &>${logfile}
-func_status_check $?
-fi
-
 - name: Copy roboshop configuration file
   ansible.builtin.copy:
     src: mongo.repo
