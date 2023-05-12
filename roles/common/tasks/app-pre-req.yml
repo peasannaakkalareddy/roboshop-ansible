@@ -9,8 +9,9 @@
 
 - name: Create Application Directory
   ansible.builtin.file:
+    state: directory
     path: /app
-    state: Directory
+
 
 - name: Download app content
   ansible.builtin.unarchive:
