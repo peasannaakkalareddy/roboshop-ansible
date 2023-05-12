@@ -1,0 +1,20 @@
+
+  func_systemd
+  func_schema
+- name: Configuring NodeJS repos
+  ansible.builtin.shell: curl -sL https://rpm.nodesource.com/setup_lts.x
+
+- name: Install NodeJS
+  ansible.builtin.yum:
+    name: nodejs
+    state: installed
+
+- name: Include App pre-reqs
+  ansible.builtin.import_tasks:
+    file: app-pre-req.yml
+
+- name: Configuring NodeJS repos
+  ansible.builtin.shell: npm install
+  args:
+    chdir: /app
+

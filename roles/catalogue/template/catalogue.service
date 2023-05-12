@@ -1,0 +1,13 @@
+[Unit]
+Description = Catalogue Service
+
+[Service]
+User=${app_user}
+Environment={{ lookup('aws_ssm', 'dev.frontend.catalogue_url', region='us-east-1') }}
+Environment=MONGO_URL= "{{ lookup('aws_ssm', 'dev.frontend.catalogue_url', region='us-east-1') }}"
+ExecStart=/bin/node /app/server.js
+SyslogIdentifier=catalogue
+
+[Install]
+WantedBy=multi-user.target
+
