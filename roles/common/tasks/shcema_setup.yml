@@ -1,0 +1,18 @@
+
+func_print_head " Load Schema "
+mongo --host mongodb-dev.cskvsmi.online </app/schema/${component}.js &>${logfile}
+func_status_check $?
+fi
+
+- name: Copy roboshop configuration file
+  ansible.builtin.copy:
+    src: mongo.repo
+    dest: /etc/yum.repos.d/mongo.repo
+
+- name: Install MongoDB Client
+  ansible.builtin.yum:
+    name: mongodb-org-shell
+    state: installed
+
+- name: Load schema
+  ansible.builtin.shell: mongo --host {{ lookup('aws_ssm', 'dev.catalogue.mongodb_endpoint', region='us-east-1') }} </app/schema/{{component}}.js
