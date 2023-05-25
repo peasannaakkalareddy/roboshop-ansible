@@ -1,0 +1,13 @@
+[Unit]
+Description = Cart Service
+[Service]
+User=${app_user}
+Environment={{ lookup('aws_ssm', 'dev.cart.REDIS_HOST', region='us-east-1') }}
+Environment={{ lookup('aws_ssm', 'dev.cart.CATALOGUE_HOST', region='us-east-1') }}
+Environment={{ lookup('aws_ssm', 'dev.cart.CATALOGUE_PORT', region='us-east-1') }}
+ExecStart=/bin/node /app/server.js
+SyslogIdentifier=cart
+
+[Install]
+WantedBy=multi-user.target
+
