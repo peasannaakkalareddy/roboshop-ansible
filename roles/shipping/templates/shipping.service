@@ -1,0 +1,12 @@
+[Unit]
+Description=Shipping Service
+
+[Service]
+User=roboshop
+Environment={{ lookup('aws_ssm', 'dev.CART_ENDPOINT', region='us-east-1') }}
+Environment={{ lookup('aws_ssm', 'dev.DB_HOST', region='us-east-1') }}
+ExecStart=/bin/java -jar /app/shipping.jar
+SyslogIdentifier=shipping
+
+[Install]
+WantedBy=multi-user.target
