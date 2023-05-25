@@ -23,5 +23,4 @@
         name: mysql
 
     - name: Load schema
-      ansible.builtin.shell: mysql -h {{ lookup('aws_ssm', 'dev.shipping.db.endpoint', region='us-east-1') }} -u{{ lookup('aws_ssm', 'dev.shipping.db.username', region='us-east-1') }} -p{{ lookup('aws_ssm', 'dev.shipping.db.password', region='us-east-1') }} < /app/schema/{{component}}.sql
-
+      ansible.builtin.shell: {{ lookup('aws_ssm', 'dev.shipping.DB_HOST', region='us-east-1') }} -u{{ lookup('aws_ssm', 'dev.shipping.db.username', region='us-east-1') }} -p{{ lookup('aws_ssm', 'dev.shipping.db.password', region='us-east-1') }} < /app/schema/{{component}}.sql
