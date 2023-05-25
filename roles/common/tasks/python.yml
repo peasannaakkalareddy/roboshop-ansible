@@ -8,7 +8,7 @@
 
 - name: Include app_prerequisites
   ansible.builtin.import_tasks:
-    file: app_prereq.yml
+    file: app-pre-req.yml
 
 - name: Install Python Dependencies
   ansible.builtin.shell: pip3.6 install -r requirements.txt
