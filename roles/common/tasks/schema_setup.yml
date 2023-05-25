@@ -15,3 +15,13 @@
     - name: Load schema
       ansible.builtin.shell: mongo --host {{ lookup('aws_ssm', 'dev.catalogue.mongodb_endpoint', region='us-east-1') }} </app/schema/{{component}}.js
 
+- name: Load Mysql schema
+  when: schema_setup == 'mysql'
+  block:
+    - name: Install Mysql clinet
+      ansible.builtin.yum:
+        name: mysql
+
+    - name: Load schema
+      ansible.builtin.shell: mysql -h {{ lookup('aws_ssm', 'dev.shipping.db.endpoint', region='us-east-1') }} -u{{ lookup('aws_ssm', 'dev.shipping.db.username', region='us-east-1') }} -p{{ lookup('aws_ssm', 'dev.shipping.db.password', region='us-east-1') }} < /app/schema/{{component}}.sql
+
