@@ -16,7 +16,7 @@
     chdir: /app
 
 
-- name: Include shcema
+- name: Include schema
   ansible.builtin.import_tasks:
     file: schema_setup.yml
 
