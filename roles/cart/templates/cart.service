@@ -1,13 +1,12 @@
 [Unit]
 Description = Cart Service
 [Service]
-User=${app_user}
-Environment={{ lookup('aws_ssm', 'dev.cart.REDIS_HOST', region='us-east-1') }}
-Environment={{ lookup('aws_ssm', 'dev.cart.CATALOGUE_HOST', region='us-east-1') }}
-Environment={{ lookup('aws_ssm', 'dev.cart.CATALOGUE_PORT', region='us-east-1') }}
+User=roboshop
+Environment=REDIS_HOST={{ lookup('aws_ssm', 'dev.cart.redis_host', region='us-east-1' ) }}
+Environment=CATALOGUE_HOST={{ lookup('aws_ssm', 'dev.cart.catalogue_endpoint', region='us-east-1' ) }}
+Environment=CATALOGUE_PORT={{ lookup('aws_ssm', 'dev.cart.catalogue_port', region='us-east-1' ) }}
 ExecStart=/bin/node /app/server.js
 SyslogIdentifier=cart
 
 [Install]
 WantedBy=multi-user.target
-

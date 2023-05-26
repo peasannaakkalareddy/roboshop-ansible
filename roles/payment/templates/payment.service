@@ -12,7 +12,6 @@ Environment=AMQP_HOST={{ lookup('aws_ssm', 'dev.payment.AMQP_HOST', region='us-e
 Environment=AMQP_USER={{ lookup('aws_ssm', 'dev.payment.AMQP_USER', region='us-east-1' ) }}
 Environment=AMQP_PASS={{ lookup('aws_ssm', 'dev.payment.AMQP_PASS', region='us-east-1' ) }}
 
-
 ExecStart=/usr/local/bin/uwsgi --ini payment.ini
 ExecStop=/bin/kill -9 $MAINPID
 SyslogIdentifier=payment
