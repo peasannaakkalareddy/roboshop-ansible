@@ -3,8 +3,8 @@ Description = Catalogue Service
 
 [Service]
 User=roboshop
-Environment={{ lookup('aws_ssm', 'dev.catalogue.mongo', region='us-east-1' ) }}
-Environment=MONGO_URL="{{ lookup('aws_ssm', 'dev.catalogue.mongo_url', region='us-east-1' ) }}"
+Environment={{ lookup('aws_ssm', '{{env}}.catalogue.mongo', region='us-east-1' ) }}
+Environment=MONGO_URL="{{ lookup('aws_ssm', '{{env}}.catalogue.mongo_url', region='us-east-1' ) }}"
 ExecStart=/bin/node /app/server.js
 SyslogIdentifier=catalogue
 

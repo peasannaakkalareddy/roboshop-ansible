@@ -2,9 +2,9 @@
 Description = Cart Service
 [Service]
 User=roboshop
-Environment=REDIS_HOST={{ lookup('aws_ssm', 'dev.cart.redis_host', region='us-east-1' ) }}
-Environment=CATALOGUE_HOST={{ lookup('aws_ssm', 'dev.cart.catalogue_endpoint', region='us-east-1' ) }}
-Environment=CATALOGUE_PORT={{ lookup('aws_ssm', 'dev.cart.catalogue_port', region='us-east-1' ) }}
+Environment=REDIS_HOST={{ lookup('aws_ssm', '{{env}}.cart.redis_host', region='us-east-1' ) }}
+Environment=CATALOGUE_HOST={{ lookup('aws_ssm', '{{env}}.cart.catalogue_endpoint', region='us-east-1' ) }}
+Environment=CATALOGUE_PORT={{ lookup('aws_ssm', '{{env}}.cart.catalogue_port', region='us-east-1' ) }}
 ExecStart=/bin/node /app/server.js
 SyslogIdentifier=cart
 
