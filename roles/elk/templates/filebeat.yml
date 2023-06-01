@@ -17,9 +17,5 @@ setup.template.settings:
   index.number_of_shards: 1
 
 processors:
-  - add_host_metadata:
-      when.not.contains.tags: forwarded
-  - add_cloud_metadata: ~
-  - add_docker_metadata: ~
-  - add_kubernetes_metadata: ~
-
+  - drop_fields:
+      fields: ["host.name", "ecs.version", "agent.version", "agent.type", "agent.id", "agent.ephemeral_id", "agent.hostname", "log.offset", "input.type"]
