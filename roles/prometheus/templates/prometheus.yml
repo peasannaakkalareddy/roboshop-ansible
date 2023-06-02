@@ -31,3 +31,15 @@ scrape_configs:
         filters:
           - name: tag:Monitor
             values: [ "true" ]
+
+#    relabel_configs:
+#      {% for label in labels %}
+#
+#      - source_labels: [ __meta_ec2_tag_{{ label.tag }} ]
+#        target_label: {{ label.label }}
+#      {%- endfor %}
+
+    relabel_configs:
+
+      - source_labels: [ __meta_ec2_tag ]
+        target_label: name
