@@ -18,3 +18,8 @@
 - name: Include SystemDsetup
   ansible.builtin.import_tasks:
     file: systemd_setup.yml
+
+- name: Import Prometheus
+  ansible.builtin.import_role:
+    name: prometheus
+    tasks_from: node_exporter
