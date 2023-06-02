@@ -1,0 +1,12 @@
+labels:
+  - { tag: Name, label: name }
+  - { tag: env, label: env }
+  - { tag: component, label: component }
+
+components:
+  - { name: cart, service_name: cart }
+  - { name: catalogue, service_name: catalogue }
+  - { name: user, service_name: user }
+  - { name: shipping, service_name: shipping }
+  - { name: payment, service_name: payment }
+  - { name: frontend, service_name: nginx }
