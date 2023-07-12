@@ -13,9 +13,13 @@
         name: mongodb-org-shell
         state: installed
 
+    - name: Download DocDB PEM File
+      ansible.builtin.get_url:
+        url: https://truststore.pki.rds.amazonaws.com/us-east-1/us-east-1-bundle.pem
+        dest: /app/rds-combined-ca-bundle.pem
 
     - name: Load Schema
-      ansible.builtin.shell: mongo --host {{ lookup('aws_ssm', 'dev.{{component}}.mongo_endpoint', region='us-east-1' ) }} </app/schema/{{component}}.js
+      ansible.builtin.shell: mongo --ssl --host {{ lookup('aws_ssm', '{{ env }}.docdb.db_endpoint', region='us-east-1' ) }}:27017 --sslCAFile /app/rds-combined-ca-bundle.pem --username {{ lookup('aws_ssm', '{{ env }}.docdb.db_user', region='us-east-1' ) }} --password {{ lookup('aws_ssm', '{{ env }}.docdb.db_pass', region='us-east-1' ) }} </app/schema/{{component}}.js
 
 - name: Load MySQL Schema
   when: schema_setup == "mysql"
