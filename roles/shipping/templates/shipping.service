@@ -4,7 +4,7 @@ Description=Shipping Service
 [Service]
 User=roboshop
 Environment=CART_ENDPOINT={{ lookup('aws_ssm', '{{env}}.shipping.cart_endpoint', region='us-east-1' ) }}
-Environment=DB_HOST={{ lookup('aws_ssm', '{{env}}.shipping.db_host', region='us-east-1' ) }}
+Environment=DB_HOST={{ lookup('aws_ssm', '{{env}}.rds.db_host', region='us-east-1' ) }}
 ExecStart=/bin/java -jar /app/shipping.jar
 SyslogIdentifier=shipping
 
