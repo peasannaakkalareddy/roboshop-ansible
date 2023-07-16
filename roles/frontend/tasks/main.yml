@@ -32,7 +32,7 @@
 - name: Download App Content
   ansible.builtin.unarchive:
     src: http://3.91.175.12:8081/repository/{{component}}/{{component}}-{{ lookup('aws_ssm', '{{ env }}.{{component}}.app_version', region='us-east-1' ) }}.zip
-    dest: /app
+    dest: /usr/share/nginx/html
     remote_src: yes
 
 - name: Start nginx Service
