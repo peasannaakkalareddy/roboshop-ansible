@@ -1,3 +1,3 @@
 component: shipping
 schema_setup: mysql
-app_version: 6.0.3
+app_version: 9.0.0
