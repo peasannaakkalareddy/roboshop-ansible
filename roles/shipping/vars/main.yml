@@ -1,4 +1,4 @@
 component: shipping
 schema_setup: mysql
-app_version: 9.0.0
+app_version: 13.0.0
 force_schema_reload: false
