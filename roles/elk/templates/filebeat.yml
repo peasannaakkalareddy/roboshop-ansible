@@ -9,7 +9,7 @@ filebeat.inputs:
 
 
 output.logstash:
-  hosts: ["34.227.105.159:5044"]   #elk servers private ip
+  hosts: ["3.91.158.47:5044"]   #elk servers private ip
 
 filebeat.config.modules:
   path: ${path.config}/modules.d/*.yml
